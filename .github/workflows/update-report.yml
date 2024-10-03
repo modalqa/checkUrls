@@ -1,10 +1,8 @@
-name: Update report.json
+name: Update Report
 
-# Menjalankan action setiap 1 jam (atau sesuai jadwal yang diinginkan)
 on:
   schedule:
-    - cron: '0 * * * *' # Setiap jam
-  workflow_dispatch: # Memungkinkan eksekusi manual dari GitHub
+    - cron: '0 * * * *' # Menjalankan setiap jam, sesuaikan sesuai kebutuhan
 
 jobs:
   update-report:
@@ -13,8 +11,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  
 
-      - name: Set up Node.js environment
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -22,13 +22,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run URL check script
-        run: node test.js # Menjalankan script Anda yang melakukan pengecekan URL
+      - name: Run the script
+        run: node test.js 
 
-      - name: Commit and push updated report.json
+      - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add reports/report.json
           git commit -m "Update report.json"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
