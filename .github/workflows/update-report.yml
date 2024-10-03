@@ -2,7 +2,8 @@ name: Update Report
 
 on:
   schedule:
-    - cron: '0 * * * *' # Menjalankan setiap jam, sesuaikan sesuai kebutuhan
+    - cron: '0 * * * *' # Setiap jam
+  workflow_dispatch: # Memungkinkan eksekusi manual dari GitHub
 
 jobs:
   update-report:
