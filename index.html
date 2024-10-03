@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">URL or Domain Report Dashboard</h1>
+        <h1 class="text-center">Domain Dashboard</h1>
         
         <div class="row mt-4">
             <div class="col-md-3">
@@ -69,6 +69,79 @@
         </table>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        async function loadData() {
+    try {
+        const response = await fetch('reports/report.json');
+        const data = await response.json();
+
+        // Update cards
+        document.getElementById('total-urls').innerText = data.totalUrls;
+        document.getElementById('green-urls').innerText = data.totalGreen;
+        document.getElementById('red-urls').innerText = data.totalRed;
+        document.getElementById('maintenance-urls').innerText = data.totalMaintenance;
+        document.getElementById('total-time').innerText = `${data.totalTime} ms`;
+
+        // Update table dengan hanya menampilkan URL yang berstatus Red
+        const urlBody = document.getElementById('url-body');
+        urlBody.innerHTML = ''; // Clear existing rows
+        
+        // Filter hanya URL yang berstatus Red
+        const redUrls = data.urlList.filter(item => item.status === 'Red');
+        
+        redUrls.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.product}</td>
+                <td>${item.url}</td>
+                <td>${item.status}</td>
+            `;
+            urlBody.appendChild(row);
+        });
+
+        // Render Chart
+        renderChart(data);
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+}
+
+function renderChart(data) {
+    const ctx = document.getElementById('statusChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Green URLs', 'Red URLs', 'Maintenance URLs'],
+            datasets: [{
+                label: 'URL Status',
+                data: [data.totalGreen, data.totalRed, data.totalMaintenance],
+                backgroundColor: [
+                    'rgba(40, 167, 69, 0.7)', // Green
+                    'rgba(220, 53, 69, 0.7)', // Red
+                    'rgba(255, 193, 7, 0.7)'  // Yellow
+                ],
+                borderColor: [
+                    'rgba(40, 167, 69, 1)', // Green
+                    'rgba(220, 53, 69, 1)', // Red
+                    'rgba(255, 193, 7, 1)'  // Yellow
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Load data when the page loads
+window.onload = loadData;
+
+    </script>
 </body>
 </html>
