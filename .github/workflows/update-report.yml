@@ -25,6 +25,11 @@ jobs:
       - name: Run the script
         run: node test.js 
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "depfaris@gmail,com"
+          git config --global user.name "modalqa"
+
       - name: Commit and push changes
         run: |
           git add reports/report.json
