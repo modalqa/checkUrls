@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run URL check script
-        run: node script.js # Menjalankan script Anda yang melakukan pengecekan URL
+        run: node test.js # Menjalankan script Anda yang melakukan pengecekan URL
 
       - name: Commit and push updated report.json
         run: |
