@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Report Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">URL or Domain Report Dashboard</h1>
+        
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Total URLs</h5>
+                        <p class="card-text" id="total-urls">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Green URLs</h5>
+                        <p class="card-text" id="green-urls">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Red URLs</h5>
+                        <p class="card-text" id="red-urls">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Maintenance URLs</h5>
+                        <p class="card-text" id="maintenance-urls">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="mt-4">List of URLs</h2>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Product</th>
+                    <th>URL</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="url-body">
+                <!-- Data URL akan diisi di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

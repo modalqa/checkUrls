@@ -1,0 +1,18 @@
+{
+  "totalUrls": 1308,
+  "totalGreen": 1306,
+  "totalRed": 2,
+  "totalMaintenance": 0,
+  "redUrls": [
+    {
+      "product": "Siakad Cloud & Siakad Lite",
+      "url": "http://stkippgribl.siakadcloud.com",
+      "error": "timeout of 5000ms exceeded"
+    },
+    {
+      "product": "NeoFeeder",
+      "url": "http://staging-profeeder.feeder-cloud.com:8996",
+      "error": "connect ECONNREFUSED 139.162.59.218:8996"
+    }
+  ]
+}
