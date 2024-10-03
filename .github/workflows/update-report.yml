@@ -24,15 +24,4 @@ jobs:
         run: npm install
 
       - name: Run the script
-        run: node test.js 
-
-      - name: Configure Git
-        run: |
-          git config --local user.email "depfaris@gmail,com"
-          git config --local user.name "modalqa"
-
-      - name: Commit and push changes
-        run: |
-          git add reports/report.json
-          git commit -m "Update report.json"
-          git push https://modalqa:${{ secrets.MY_PERSONAL_TOKEN }}@github.com/modalqa/checkUrls.git HEAD:main
+        run: node test.js
