@@ -27,8 +27,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add reports/report.json
           git commit -m "Update report.json"
           git push
